@@ -1,0 +1,192 @@
+/* ===== 基础样式和 Retina 优化 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== Retina 屏幕关键优化 ===== */
+img {
+    /* 确保图片高清显示 */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: bicubic;
+    
+    /* 防止图片被压缩 */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+    /* 硬件加速 */
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Retina 屏幕特殊优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* ===== 布局容器 ===== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== 头部样式 ===== */
+header {
+    background: linear-gradient(135deg, #ffb3d9 0%, #ff85c0 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* ===== 画廊网格布局 ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(255, 105, 180, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.caption {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ff69b4;
+    background: linear-gradient(to right, #ffe0f0, #fff5fa);
+}
+
+/* ===== 上传说明区域 ===== */
+.upload-info {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.15);
+}
+
+.upload-info h2 {
+    color: #ff69b4;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.upload-info ol {
+    margin-left: 25px;
+    line-height: 2;
+}
+
+.upload-info li {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+.upload-info code {
+    background: #ffe0f0;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: #ff1493;
+}
+
+/* ===== 页脚 ===== */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #ffb3d9 0%, #ff85c0 100%);
+    color: white;
+    margin-top: 60px;
+    font-size: 1rem;
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .upload-info {
+        padding: 20px;
+    }
+}
+
+/* ===== 加载动画 ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-item {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item:nth-child(4) { animation-delay: 0.4s; }
